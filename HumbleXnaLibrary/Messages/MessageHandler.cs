@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Humble.Messages
 {
+    /// <summary>
+    /// The Message Handler processes every posted messages and calls the appropriate callbacks
+    /// </summary>
     public class MessageHandler
     {
         #region SINGLETON
@@ -51,9 +54,24 @@ namespace Humble.Messages
         Dictionary<String, MessageType> _messageTypes = new Dictionary<string, MessageType>();
         Queue<Message> _pendingMessages = new Queue<Message>();
 
-
         public void ProcessMessages()
         {
+            while (_pendingMessages.Count > 0)
+            {
+                Message msg = _pendingMessages.Dequeue();
+                MessageType type = _messageTypes[msg.Id];
+
+                if (type.UniqueListener && type.Listeners.Count > 0)
+                {
+                    type.Listeners[0].HandleCallback(msg.Id, msg.Param1, msg.Param2);
+                }
+                else if (type.Listeners.Count > 0)
+                {
+                    foreach (IMessageObject l in type.Listeners)
+                        l.HandleCallback(msg.Id, msg.Param1, msg.Param2);
+                }
+                msg.Dispose();
+            }
         }
 
         public bool CreateMessage(String name, bool uniqueListener)

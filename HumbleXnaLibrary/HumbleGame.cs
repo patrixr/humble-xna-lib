@@ -4,6 +4,7 @@ using System.Linq;
 using Humble.Screens;
 using Humble.Components;
 using Humble.Components.Particles;
+using Humble.Messages;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -16,13 +17,10 @@ namespace Humble
 {
     public class HumbleGame : Microsoft.Xna.Framework.Game
     {
-        #if DEBUG
-        //FPSDisplay fpsDisplay;
-        #endif
-
         protected GraphicsDeviceManager graphics;
         protected SpriteBatch spriteBatch;
         protected ScreenManager screenManager;
+        protected MessageHandler messageHandler;
 
         public HumbleGame()
         {
@@ -33,7 +31,7 @@ namespace Humble
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            messageHandler = MessageHandler.Singleton;
 
             base.Initialize();
         }
@@ -42,17 +40,10 @@ namespace Humble
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            #if DEBUG
-            //fpsDisplay = new FPSDisplay(Content.Load<SpriteFont>("fpsfont"));
-            #endif
-
-            // TODO: use this.Content to load your game content here
         }
 
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
         }
 
         protected override void Update(GameTime gameTime)
@@ -61,12 +52,7 @@ namespace Humble
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
             screenManager.Update(gameTime);
-
-            #if DEBUG
-            //fpsDisplay.Update(gameTime);
-            #endif
 
             base.Update(gameTime);
         }
@@ -75,12 +61,7 @@ namespace Humble
         {
             GraphicsDevice.Clear(Color.Black);
 
-            // TODO: Add your drawing code here
             screenManager.Draw();
-
-            #if DEBUG
-            //fpsDisplay.Draw(spriteBatch);
-            #endif
 
             base.Draw(gameTime);
         }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Humble.Messages
 {
-    class Message
+    class Message : IDisposable
     {
         public Message(String id, Object param1, Object param2)
         {
@@ -17,5 +17,13 @@ namespace Humble.Messages
         public String Id;
         public Object Param1;
         public Object Param2;
+
+        public void Dispose()
+        {
+            // check gc's behavior
+            Id = null;
+            Param1 = null;
+            Param2 = null;
+        }
     }
 }
