@@ -98,7 +98,10 @@ namespace Humble.Screens
         {
             SpriteBatch.Begin();
             for (int i = 0; i < Components.Count; ++i)
-                Components[i].Draw(SpriteBatch);
+            {
+                if (Components[i].Visible)
+                    Components[i].Draw(SpriteBatch);
+            }
             SpriteBatch.End();
         }
 

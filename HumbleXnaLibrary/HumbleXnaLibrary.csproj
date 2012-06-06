@@ -67,6 +67,7 @@
     <Compile Include="Components\Particles\ParticleEmitter.cs" />
     <Compile Include="Components\Particles\RandomParticleGenerator.cs" />
     <Compile Include="Components\StaticSprite.cs" />
+    <Compile Include="Configuration\HumbleConfiguration.cs" />
     <Compile Include="Errors\Error.cs" />
     <Compile Include="HumbleGame.cs" />
     <Compile Include="Messages\Message.cs" />

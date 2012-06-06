@@ -14,8 +14,8 @@ namespace Humble.Messages
         /// This function is called when processing a message for which the current object is listed as a listener
         /// </summary>
         /// <param name="msg">Name of the message</param>
-        /// <param name="param1"></param>
-        /// <param name="param2"></param>
+        /// <param name="param1">First parameter, may require a cast</param>
+        /// <param name="param2">Second parameter, may require a cast</param>
         void HandleCallback(String msg, Object param1, Object param2);
 
     }

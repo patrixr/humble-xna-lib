@@ -40,10 +40,13 @@ namespace Humble
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            base.LoadContent();
         }
 
         protected override void UnloadContent()
         {
+            base.UnloadContent();
         }
 
         protected override void Update(GameTime gameTime)
@@ -53,6 +56,7 @@ namespace Humble
                 this.Exit();
 
             screenManager.Update(gameTime);
+            messageHandler.ProcessMessages(gameTime);
 
             base.Update(gameTime);
         }

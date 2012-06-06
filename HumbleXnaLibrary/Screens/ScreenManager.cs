@@ -11,9 +11,9 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Humble.Screens
 {
     /// <summary>
-    /// Pile de screens
-    /// Le ScreenManager fait appel aux méthodes Draw et Update de chaques screen, celles-ci doivent etre implementées
-    /// Class en singleton, il ne peut y avoir qu'un unique screen manager par jeu.
+    /// Manages a stack of screens
+    /// Calls the draw and update methods of each screen. They must be implemented.
+    /// The Screen manager is a singleton. Only one can exist in each game
     /// </summary>
     public class ScreenManager
     {
@@ -22,7 +22,7 @@ namespace Humble.Screens
         private int ToPop = 0;
 
         /// <summary>
-        /// Renvoie le screen en haut de la pile
+        /// Returns the screen on top of the stack
         /// </summary>
         public Screen TopScreen
         {
@@ -39,10 +39,10 @@ namespace Humble.Screens
         private static ScreenManager singleton = null;
 
         /// <summary>
-        /// Retourne l'instance de screenmanager, le crée au premier appel
-        /// La property Singleton peut être utilisée alternativement
+        /// Returns the sole instance of the screen manager.
+        /// The singleton property may be used alternatively
         /// </summary>
-        /// <returns>Le screenmanager</returns>
+        /// <returns>The screen manager</returns>
         public static ScreenManager GetInstance()
         {
             if (singleton == null)
@@ -51,7 +51,7 @@ namespace Humble.Screens
         }
 
         /// <summary>
-        /// Correspond a l'instance de screenmanager, sera crée a la première utilisation.
+        /// Instance of the screen manager, will be created on first use.
         /// </summary>
         public static ScreenManager Singleton
         {
@@ -74,8 +74,8 @@ namespace Humble.Screens
         }
 
         /// <summary>
-        /// Dessine chaque screen dans l'ordre de la stack, le plus haut en premier
-        /// S'arrete au premier screen ayant la property BlocksDraw a true.
+        /// Draws every screen in the stack from the top down
+        /// Stops at the first screen with the BlocksDraw property enabled
         /// </summary>
         public void Draw()
         {
@@ -98,8 +98,8 @@ namespace Humble.Screens
         }
 
         /// <summary>
-        /// Update chaque screen dans l'ordre de la stack, le plus haut en premier
-        /// S'arrete au premier screen ayant la property BlocksUpdate a true.
+        /// Updates every screen in the stack from the top down
+        /// Stops at the first screen with the BlocksUpdate property enabled
         /// </summary>
         public void Update(GameTime gameTime)
         {
@@ -142,8 +142,8 @@ namespace Humble.Screens
         }
 
         /// <summary>
-        /// Rajoute un screen a la pile
-        /// Attention, celui ci ne sera pas rajouté immediatement, mais avant le prochain update
+        /// Adds a screen to the stack
+        /// Important, the screen will not be added immediatly. Changes on the stack will take effect during the next update
         /// </summary>
         /// <param name="scr">Le screen a rajouter</param>
         public void pushScreen(Screen scr)
@@ -153,8 +153,8 @@ namespace Humble.Screens
         }
 
         /// <summary>
-        /// Pop un screen de la pile
-        /// Attention, celui ci ne sera pas retiré immédiatement, mais avant le prochain update
+        /// Pops a screen from the stack
+        /// Important, the screen will not be removed immediatly. Changes on the stack will take effect during the next update
         /// </summary>
         public void popScreen()
         {

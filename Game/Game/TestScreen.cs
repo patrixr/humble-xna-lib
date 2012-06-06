@@ -13,8 +13,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Humble;
+using Humble.Messages;
 
-class TestScreen : Screen
+class TestScreen : Screen, IMessageObject
 {
     ParticleEmitter particleEmitter;
     RandomParticleGenerator particleGen;
@@ -24,6 +25,7 @@ class TestScreen : Screen
     bool inputChanged = false;
     bool toResume = false;
     Effect effect;
+    StaticSprite sprite;
 
     public bool randomColor
     {
@@ -50,14 +52,17 @@ class TestScreen : Screen
         particleEmitter = new ParticleEmitter(particleGen, new Vector2(300, 300));
         particleEmitter.GenerationCount = 10;
 
-        StaticSprite tmp = new StaticSprite(Content.Load<Texture2D>("blob"), new Vector2(300, 300));
+        sprite = new StaticSprite(Content.Load<Texture2D>("blob"), new Vector2(300, 300));
 
-        tmp.ZIndex = 2;
+        sprite.ZIndex = 2;
         particleEmitter.ZIndex = 1;
 
-        AddComponent(tmp);
+        AddComponent(sprite);
         AddComponent(particleEmitter);
 
+        MessageHandler.Singleton.CreateMessage("MSG_TEST_HUMBLE", true);
+        MessageHandler.Singleton.RegisterListener(this, "MSG_TEST_HUMBLE");
+        MessageHandler.Singleton.PostDelayedMessage("MSG_TEST_HUMBLE", null, null, 3000);
             
         // FmodSoundManager sm = FmodSoundManager.getInstance();
         // sng = sm.CreateSound("C:\\Users\\krik\\Music\\Jamestown OST\\01 Prologue.mp3");
@@ -100,11 +105,12 @@ class TestScreen : Screen
         //effect.
        // effect = Content.Load<Effect>("Effect1");
        // effect.CurrentTechnique = effect.Techniques[0];
-            
-        SpriteBatch.Begin();
+
+        base.Draw();
+        /*SpriteBatch.Begin();
         for (int i = 0; i < Components.Count; ++i)
             Components[i].Draw(SpriteBatch);
-        SpriteBatch.End();
+        SpriteBatch.End();*/
     }
 
     public override void HandleInput()
@@ -130,4 +136,12 @@ class TestScreen : Screen
         base.UnloadContent();
     }
 
+
+    public void HandleCallback(string msg, object param1, object param2)
+    {
+        if (msg == "MSG_TEST_HUMBLE")
+        {
+            sprite.Visible = !sprite.Visible;
+        }
+    }
 }
