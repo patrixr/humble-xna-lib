@@ -75,6 +75,8 @@
     <Compile Include="Messages\MessageHandler.cs" />
     <Compile Include="Messages\IMessageObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screens\IScreenStack.cs" />
+    <Compile Include="Screens\LinkedScreens.cs" />
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\ScreenManager.cs" />
     <Compile Include="Screens\ScreenManagerEvent.cs" />

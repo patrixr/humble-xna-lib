@@ -15,7 +15,7 @@ namespace Humble.Screens
     /// Calls the draw and update methods of each screen. They must be implemented.
     /// The Screen manager is a singleton. Only one can exist in each game
     /// </summary>
-    public class ScreenManager
+    public class ScreenManager : IScreenStack
     {
         private Stack<Screen> Screens = new Stack<Screen>();
         private Queue<ScreenManagerEvent> Events = new Queue<ScreenManagerEvent>();
