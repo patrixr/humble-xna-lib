@@ -6,6 +6,7 @@ using Humble.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Humble.Events;
 
 namespace Humble.Screens
 {
@@ -22,6 +23,11 @@ namespace Humble.Screens
         protected ContentManager Content;
 
         /// <summary>
+        /// Handles all AClickable objects of the screen.
+        /// </summary>
+        protected EventManager eventManager;
+
+        /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="game">The parent game</param>
@@ -34,6 +40,7 @@ namespace Humble.Screens
             this.BlocksUpdate = true;
             this.BlocksInput = true;
             this.BlocksDraw = true;
+            this.eventManager = new EventManager();
             Content = game.Content;
         }
 
@@ -42,7 +49,7 @@ namespace Humble.Screens
         /// </summary>
         public void OnZIndexChange(AComponent child)
         {
-            //@TODO optimize
+            // TODO optimize zindex change Or remove it
             this.Components = Components.OrderBy(x => x.ZIndex).ToList();
             /*if (this.Components.Remove(child))
                 for (int i = 0; i < this.Components.Count; ++i)
@@ -113,6 +120,7 @@ namespace Humble.Screens
 
         public virtual void HandleInput()
         {
+            eventManager.ProcessEvents();
             return;
         }
 

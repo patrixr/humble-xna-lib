@@ -51,12 +51,24 @@ class TestScreen : Screen, IMessageObject
 
         particleEmitter = new ParticleEmitter(particleGen, new Vector2(300, 300));
         particleEmitter.GenerationCount = 10;
+        
 
         sprite = new StaticSprite(Content.Load<Texture2D>("blob"), new Vector2(300, 300));
 
         sprite.ZIndex = 2;
         particleEmitter.ZIndex = 1;
 
+        Button button = new Button(Content.Load<Texture2D>("diamond"), new Vector2(400, 100),
+        delegate()
+        {
+            
+            this.sprite.Visible = !this.sprite.Visible;
+
+        }, Color.Red, Color.Yellow);
+        eventManager.RegisterClickable(button);
+        button.ZIndex = 100;
+
+        AddComponent(button);
         AddComponent(sprite);
         AddComponent(particleEmitter);
 
@@ -132,7 +144,6 @@ class TestScreen : Screen, IMessageObject
 
     public override void UnloadContent()
     {
-        //sng.Close();
         base.UnloadContent();
     }
 

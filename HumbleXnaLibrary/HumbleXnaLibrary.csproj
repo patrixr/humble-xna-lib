@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\AComponent.cs" />
+    <Compile Include="Components\Button.cs" />
     <Compile Include="Components\FPSDisplay.cs" />
     <Compile Include="Components\Particles\IParticleGenerator.cs" />
     <Compile Include="Components\Particles\Particle.cs" />
@@ -69,6 +70,8 @@
     <Compile Include="Components\StaticSprite.cs" />
     <Compile Include="Configuration\HumbleConfiguration.cs" />
     <Compile Include="Errors\Error.cs" />
+    <Compile Include="Events\EventManager.cs" />
+    <Compile Include="Events\IClickable.cs" />
     <Compile Include="HumbleGame.cs" />
     <Compile Include="Messages\Message.cs" />
     <Compile Include="Messages\MessageType.cs" />

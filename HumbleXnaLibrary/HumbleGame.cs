@@ -5,6 +5,7 @@ using Humble.Screens;
 using Humble.Components;
 using Humble.Components.Particles;
 using Humble.Messages;
+using Humble.Events;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
