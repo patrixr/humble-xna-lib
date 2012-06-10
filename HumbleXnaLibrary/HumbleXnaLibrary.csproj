@@ -62,6 +62,9 @@
   <ItemGroup>
     <Compile Include="Animations\AnimationState.cs" />
     <Compile Include="Animations\SpriteSheet.cs" />
+    <Compile Include="Collisions\AHitBox.cs" />
+    <Compile Include="Collisions\CircleHitBox.cs" />
+    <Compile Include="Collisions\RectHitBox.cs" />
     <Compile Include="Components\AComponent.cs" />
     <Compile Include="Components\AnimatedSprite.cs" />
     <Compile Include="Components\Button.cs" />
