@@ -60,7 +60,10 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animations\AnimationState.cs" />
+    <Compile Include="Animations\SpriteSheet.cs" />
     <Compile Include="Components\AComponent.cs" />
+    <Compile Include="Components\AnimatedSprite.cs" />
     <Compile Include="Components\Button.cs" />
     <Compile Include="Components\FPSDisplay.cs" />
     <Compile Include="Components\Particles\IParticleGenerator.cs" />
@@ -72,6 +75,8 @@
     <Compile Include="Errors\Error.cs" />
     <Compile Include="Events\EventManager.cs" />
     <Compile Include="Events\IClickable.cs" />
+    <Compile Include="Exceptions\AnimationOperationException.cs" />
+    <Compile Include="Exceptions\InvalidSpriteSheetException.cs" />
     <Compile Include="HumbleGame.cs" />
     <Compile Include="Messages\Message.cs" />
     <Compile Include="Messages\MessageType.cs" />
@@ -83,6 +88,9 @@
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\ScreenManager.cs" />
     <Compile Include="Screens\ScreenManagerEvent.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Animations\spritetemplate.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />

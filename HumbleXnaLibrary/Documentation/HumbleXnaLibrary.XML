@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HumbleXnaLibrary</name>
+    </assembly>
+    <members>
+        <member name="T:Humble.Messages.MessageHandler">
+            <summary>
+            Singleton used to process every posted messages and call the appropriate callbacks.
+            It's behavior can be manipulated through the HumbleConfiguration static class.
+            Warning : Messages must be used with careful consideration
+            </summary>
+        </member>
+        <member name="M:Humble.Messages.MessageHandler.GetInstance">
+            <summary>
+            Get the single instance of the Message Handler, will create it on first call.
+            </summary>
+            <returns>The single instance of the MessageHandler</returns>
+        </member>
+        <member name="M:Humble.Messages.MessageHandler.ProcessMessages(System.Int32)">
+            <summary>
+            Processes the enqueued messages, the listeners will be notified.
+            This function is called from the HumbleGame main loop, and must not be called elsewhere. Unless used in an alternate main loop.
+            </summary>
+        </member>
+        <member name="M:Humble.Messages.MessageHandler.ProcessMessages(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Processes the enqueued messages, the listeners will be notified.
+            This function is called from the HumbleGame main loop, and must not be called elsewhere. Unless used in an alternate main loop.
+            </summary>
+        </member>
+        <member name="M:Humble.Messages.MessageHandler.CreateMessage(System.String,System.Boolean)">
+            <summary>
+            Creates a message type, that can later be posted
+            A message cannot be posted unless created first
+            </summary>
+            <param name="msg">Name assigned to the message</param>
+            <param name="uniqueListener">Defines whether multiple listener may be registered for that message</param>
+            <returns>True upon creation</returns>
+        </member>
+        <member name="M:Humble.Messages.MessageHandler.RegisterListener(Humble.Messages.IMessageObject,System.String)">
+            <summary>
+            Registers a listener for a particular message
+            When posted, the listener will be alerted by the HandleCallback method
+            </summary>
+            <param name="listener">the listener object</param>
+            <param name="msg">Message to register to</param>
+            <returns></returns>
+        </member>
+        <member name="M:Humble.Messages.MessageHandler.PostMessage(System.String,System.Object,System.Object)">
+            <summary>
+            Adds a message to the pending messages queue.
+            </summary>
+            <param name="msg">Message to post</param>
+            <param name="param1"></param>
+            <param name="param2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Humble.Messages.MessageHandler.PostDelayedMessage(System.String,System.Object,System.Object,System.UInt32)">
+            <summary>
+            Adds a delayed message to the pending messages queue, will be processed after delay_ms seconds.
+            </summary>
+            <param name="msg">Message to post</param>
+            <param name="param1"></param>
+            <param name="param2"></param>
+            <param name="delay_ms"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Humble.Messages.MessageHandler.Singleton">
+            <summary>
+            Single instance of the MessageHandler
+            </summary>
+        </member>
+        <member name="M:Humble.Components.AComponent.Initialize">
+            <summary>
+            This function is called when a component is added to a screen.
+            </summary>
+        </member>
+        <member name="T:Humble.Configuration.HumbleConfiguration">
+            <summary>
+            Contains properties that define the general behavior of Humble
+            </summary>
+        </member>
+        <member name="F:Humble.Configuration.HumbleConfiguration.MSG_MAX_PROCESSED_MESSAGES">
+            <summary>
+            Defines the maximum number of messages processed every frame
+            Set to 0 to process all of them every time.
+            </summary>
+        </member>
+        <member name="T:Humble.Messages.IMessageObject">
+            <summary>
+            A message object can recieve a callback after a message has been posted
+            </summary>
+        </member>
+        <member name="M:Humble.Messages.IMessageObject.HandleCallback(System.String,System.Object,System.Object)">
+            <summary>
+            This function is called when processing a message for which the current object is listed as a listener
+            </summary>
+            <param name="msg">Name of the message</param>
+            <param name="param1">First parameter, may require a cast</param>
+            <param name="param2">Second parameter, may require a cast</param>
+        </member>
+        <member name="F:Humble.Screens.Screen.eventManager">
+            <summary>
+            Handles all AClickable objects of the screen.
+            </summary>
+        </member>
+        <member name="M:Humble.Screens.Screen.#ctor(Humble.HumbleGame,System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="game">The parent game</param>
+            <param name="visible">Whether the screen is visible or not</param>
+        </member>
+        <member name="M:Humble.Screens.Screen.OnZIndexChange(Humble.Components.AComponent)">
+            <summary>
+            Called when the zindex of a child component is modified
+            </summary>
+        </member>
+        <member name="M:Humble.Screens.Screen.AddComponent(Humble.Components.AComponent)">
+            <summary>
+            Adds a component to the screen
+            </summary>
+            <param name="newComponent">The component to add</param>
+        </member>
+        <member name="M:Humble.Events.IClickable.OnClick">
+            <summary>
+            The user released the mouse button on the clickable area
+            </summary>
+        </member>
+        <member name="M:Humble.Events.IClickable.OnClickDown">
+            <summary>
+            The user pressed down the button on the clickable area
+            </summary>
+        </member>
+        <member name="M:Humble.Events.IClickable.OnClickUp">
+            <summary>
+            The user released the mouse button
+            </summary>
+        </member>
+        <member name="M:Humble.Events.IClickable.OnHoverIn">
+            <summary>
+            The cursor entered the clickable area
+            </summary>
+        </member>
+        <member name="M:Humble.Events.IClickable.OnHoverOut">
+            <summary>
+            The cursor exited the clickable area
+            </summary>
+        </member>
+        <member name="T:Humble.Screens.ScreenManager">
+            <summary>
+            Manages a stack of screens
+            Calls the draw and update methods of each screen. They must be implemented.
+            The Screen manager is a singleton. Only one can exist in each game
+            </summary>
+        </member>
+        <member name="M:Humble.Screens.ScreenManager.GetInstance">
+            <summary>
+            Returns the sole instance of the screen manager.
+            The singleton property may be used alternatively
+            </summary>
+            <returns>The screen manager</returns>
+        </member>
+        <member name="M:Humble.Screens.ScreenManager.Draw">
+            <summary>
+            Draws every screen in the stack from the top down
+            Stops at the first screen with the BlocksDraw property enabled
+            </summary>
+        </member>
+        <member name="M:Humble.Screens.ScreenManager.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Updates every screen in the stack from the top down
+            Stops at the first screen with the BlocksUpdate property enabled
+            </summary>
+        </member>
+        <member name="M:Humble.Screens.ScreenManager.pushScreen(Humble.Screens.Screen)">
+            <summary>
+            Adds a screen to the stack
+            Important, the screen will not be added immediatly. Changes on the stack will take effect during the next update
+            </summary>
+            <param name="scr">Le screen a rajouter</param>
+        </member>
+        <member name="M:Humble.Screens.ScreenManager.popScreen">
+            <summary>
+            Pops a screen from the stack
+            Important, the screen will not be removed immediatly. Changes on the stack will take effect during the next update
+            </summary>
+        </member>
+        <member name="P:Humble.Screens.ScreenManager.TopScreen">
+            <summary>
+            Returns the screen on top of the stack
+            </summary>
+        </member>
+        <member name="P:Humble.Screens.ScreenManager.Singleton">
+            <summary>
+            Instance of the screen manager, will be created on first use.
+            </summary>
+        </member>
+        <member name="T:Humble.Animations.SpriteSheet">
+            <summary>
+            Specifies the different frames and animations on a corresponding texture
+            
+            </summary>
+        </member>
+        <member name="T:Humble.Animations.AnimationState">
+            <summary>
+            This class is used by the SpriteSheet class, it defines an animation state
+            </summary>
+        </member>
+    </members>
+</doc>

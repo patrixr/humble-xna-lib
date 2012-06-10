@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Humble;
 using Humble.Messages;
+using Humble.Animations;
 
 class TestScreen : Screen, IMessageObject
 {
@@ -26,6 +27,7 @@ class TestScreen : Screen, IMessageObject
     bool toResume = false;
     Effect effect;
     StaticSprite sprite;
+    AnimatedSprite nyan;
 
     public bool randomColor
     {
@@ -58,11 +60,16 @@ class TestScreen : Screen, IMessageObject
         sprite.ZIndex = 2;
         particleEmitter.ZIndex = 1;
 
+        SpriteSheet ss = Content.Load<SpriteSheet>("testanimation");
+        nyan = new AnimatedSprite(Content.Load<Texture2D>("nyantest"), ss, new Vector2(400, 200));
+        nyan.ZIndex = 100;
+        AddComponent(nyan);
+
         Button button = new Button(Content.Load<Texture2D>("diamond"), new Vector2(400, 100),
         delegate()
         {
-            
-            this.sprite.Visible = !this.sprite.Visible;
+
+            this.nyan.SetAnimationState("boost");
 
         }, Color.Red, Color.Yellow);
         eventManager.RegisterClickable(button);
@@ -105,6 +112,7 @@ class TestScreen : Screen, IMessageObject
             inputChanged = false;
         }*/
         particleEmitter.Position = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
+        nyan.Position = particleEmitter.Position;
 
         base.Update(gameTime);
         //emit = false;

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <Asset Type="Humble.Animations.SpriteSheet">
+
+    <texturename>nyantest</texturename>
+    <states>
+      <Item>
+        <name>normal</name>
+        <switchdelay>100</switchdelay>
+        <width>80</width>
+        <height>50</height>
+        <nextstate>normal</nextstate>
+        <framecount>5</framecount>
+      </Item>
+      <Item>
+        <name>boost</name>
+        <switchdelay>100</switchdelay>
+        <width>100</width>
+        <height>100</height>
+        <nextstate>normal</nextstate>
+        <framecount>5</framecount>
+      </Item>
+      <Item>
+        <name>destruction</name>
+        <switchdelay>100</switchdelay>
+        <width>80</width>
+        <height>50</height>
+        <nextstate>normal</nextstate>
+        <framecount>7</framecount>
+      </Item>
+    </states>
+  </Asset>
+</XnaContent>

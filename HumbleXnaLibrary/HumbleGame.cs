@@ -16,6 +16,8 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Humble
 {
+    public delegate void Callback();
+
     public class HumbleGame : Microsoft.Xna.Framework.Game
     {
         protected GraphicsDeviceManager graphics;
