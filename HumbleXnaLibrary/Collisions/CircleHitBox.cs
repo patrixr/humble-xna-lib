@@ -5,11 +5,18 @@ using System.Text;
 
 namespace Humble.Collisions
 {
-    class CircleHitBox : AHitBox
+    public class CircleHitBox : AHitBox
     {
         public int X;
         public int Y;
         public int Radius;
+
+        public CircleHitBox(int x, int y, int radius)
+        {
+            X = x;
+            Y = y;
+            Radius = radius;
+        }
 
         public override HitBoxType GetHitBoxType()
         {

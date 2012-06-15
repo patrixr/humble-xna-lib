@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace Humble.Collisions
 {
-    class RectHitBox : AHitBox
+    public class RectHitBox : AHitBox
     {
 
         private Rectangle _rect;

@@ -127,6 +127,12 @@ namespace Humble.Animations
             return _bliteArea;
         }
 
+        public bool IsOnLastFrame()
+        {
+            return (_currentFrame == _currentState.framecount - 1);
+        }
+
+
         public void SetState(string state)
         {
             Validate();
