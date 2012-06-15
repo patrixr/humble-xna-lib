@@ -75,6 +75,7 @@
     <Compile Include="Components\Particles\RandomParticleGenerator.cs" />
     <Compile Include="Components\StaticSprite.cs" />
     <Compile Include="Configuration\HumbleConfiguration.cs" />
+    <Compile Include="Configuration\HumbleMessages.cs" />
     <Compile Include="Errors\Error.cs" />
     <Compile Include="Events\EventManager.cs" />
     <Compile Include="Events\IClickable.cs" />
@@ -93,7 +94,7 @@
     <Compile Include="Screens\ScreenManagerEvent.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Animations\spritetemplate.xml" />
+    <Content Include="Animations\spritesheettemplate.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />

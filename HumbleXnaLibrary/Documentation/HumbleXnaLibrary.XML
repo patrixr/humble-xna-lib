@@ -27,6 +27,44 @@
             </summary>
             <param name="newComponent">The component to add</param>
         </member>
+        <member name="T:Humble.HumbleGame">
+            <summary>
+            Base class of a humble game
+            </summary>
+        </member>
+        <member name="T:Humble.Messages.IMessageObject">
+            <summary>
+            A message object can recieve a callback after a message has been posted
+            </summary>
+        </member>
+        <member name="M:Humble.Messages.IMessageObject.HandleCallback(System.String,System.Object,System.Object)">
+            <summary>
+            This function is called when processing a message for which the current object is listed as a listener
+            </summary>
+            <param name="msg">Name of the message</param>
+            <param name="param1">First parameter, may require a cast</param>
+            <param name="param2">Second parameter, may require a cast</param>
+        </member>
+        <member name="F:Humble.HumbleGame.graphics">
+            <summary>
+            Graphics Device Manager
+            </summary>
+        </member>
+        <member name="F:Humble.HumbleGame.spriteBatch">
+            <summary>
+            SpriteBatch
+            </summary>
+        </member>
+        <member name="F:Humble.HumbleGame.screenManager">
+            <summary>
+            ScreenManager
+            </summary>
+        </member>
+        <member name="F:Humble.HumbleGame.messageHandler">
+            <summary>
+            Message Handler
+            </summary>
+        </member>
         <member name="M:Humble.Components.AComponent.Initialize">
             <summary>
             This function is called when a component is added to a screen.
@@ -80,19 +118,6 @@
             <summary>
             Instance of the screen manager, will be created on first use.
             </summary>
-        </member>
-        <member name="T:Humble.Messages.IMessageObject">
-            <summary>
-            A message object can recieve a callback after a message has been posted
-            </summary>
-        </member>
-        <member name="M:Humble.Messages.IMessageObject.HandleCallback(System.String,System.Object,System.Object)">
-            <summary>
-            This function is called when processing a message for which the current object is listed as a listener
-            </summary>
-            <param name="msg">Name of the message</param>
-            <param name="param1">First parameter, may require a cast</param>
-            <param name="param2">Second parameter, may require a cast</param>
         </member>
         <member name="T:Humble.Configuration.HumbleConfiguration">
             <summary>
@@ -206,6 +231,16 @@
         <member name="M:Humble.Events.IClickable.OnHoverOut">
             <summary>
             The cursor exited the clickable area
+            </summary>
+        </member>
+        <member name="T:Humble.Configuration.HumbleMessages">
+            <summary>
+            Contains all builtin messages for easier access
+            </summary>
+        </member>
+        <member name="F:Humble.Configuration.HumbleMessages.MSG_BUILTIN_EXIT">
+            <summary>
+            When posted, will cause the game to exit
             </summary>
         </member>
     </members>

@@ -14,7 +14,7 @@ namespace Humble.Components
         public Vector2 Position;
 
         private Texture2D _texture;
-        private SpriteSheet _sheet;
+        public SpriteSheet Sheet;
 
         private Rectangle _destination;
         private bool _centered;
@@ -22,7 +22,7 @@ namespace Humble.Components
         public AnimatedSprite(Texture2D texture, SpriteSheet ss, Vector2 position, bool centeredOrigin = true)
         {
             _texture = texture;
-            _sheet = ss;
+            Sheet = ss;
             Position = position;
             _destination = new Rectangle();
             _centered = centeredOrigin;
@@ -30,7 +30,7 @@ namespace Humble.Components
 
         public void SetAnimationState(string state)
         {
-            _sheet.SetState(state);
+            Sheet.SetState(state);
         }
 
         public override void Initialize()
@@ -40,7 +40,7 @@ namespace Humble.Components
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle source = _sheet.GetBlitArea();
+            Rectangle source = Sheet.GetBlitArea();
 
             if (_centered)
             {
@@ -60,7 +60,7 @@ namespace Humble.Components
 
         public override void Update(GameTime gameTime)
         {
-            _sheet.Update(gameTime);
+            Sheet.Update(gameTime);
         }
     }
 }

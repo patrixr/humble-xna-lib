@@ -15,5 +15,6 @@ namespace Humble.Configuration
         /// Set to 0 to process all of them every time.
         /// </summary>
         public static uint MSG_MAX_PROCESSED_MESSAGES = 0;
+
     }
 }
