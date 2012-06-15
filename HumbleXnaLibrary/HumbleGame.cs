@@ -54,12 +54,8 @@ namespace Humble
 
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
-
-            screenManager.Update(gameTime);
             messageHandler.ProcessMessages(gameTime);
+            screenManager.Update(gameTime);
 
             base.Update(gameTime);
         }
