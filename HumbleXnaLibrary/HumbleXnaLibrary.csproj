@@ -64,6 +64,7 @@
     <Compile Include="Animations\SpriteSheet.cs" />
     <Compile Include="Collisions\AHitBox.cs" />
     <Compile Include="Collisions\CircleHitBox.cs" />
+    <Compile Include="Collisions\CollisionGrid.cs" />
     <Compile Include="Collisions\RectHitBox.cs" />
     <Compile Include="Components\AComponent.cs" />
     <Compile Include="Components\AnimatedSprite.cs" />

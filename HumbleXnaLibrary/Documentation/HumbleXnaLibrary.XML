@@ -238,7 +238,7 @@
             Contains all builtin messages for easier access
             </summary>
         </member>
-        <member name="F:Humble.Configuration.HumbleMessages.MSG_BUILTIN_EXIT">
+        <member name="F:Humble.Configuration.HumbleMessages.MSG_BUILTIN_QUIT">
             <summary>
             When posted, will cause the game to exit
             </summary>
