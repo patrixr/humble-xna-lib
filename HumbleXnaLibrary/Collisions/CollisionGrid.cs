@@ -100,7 +100,7 @@ namespace Humble.Collisions
                 {
                     T a = _grid[i][j];
                     int div = GetDivision(a);
-                    if (div != i)
+                    if (div != i && div >= 0)
                     {
                         _grid[i].Remove(a);
                         if (_grid[div] == null)

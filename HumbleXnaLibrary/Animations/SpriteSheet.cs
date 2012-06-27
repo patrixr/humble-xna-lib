@@ -101,9 +101,8 @@ namespace Humble.Animations
                 _currentFrame++;
                 if (_currentFrame >= _currentState.framecount)
                 {
-                    if (_currentState.IsLooped())
-                        _currentFrame = 0;
-                    else
+                    _currentFrame = 0;
+                    if (!_currentState.IsLooped())
                         _currentState = GetState(_currentState.nextstate);
                 }
                 _frameHasChanged = true;
