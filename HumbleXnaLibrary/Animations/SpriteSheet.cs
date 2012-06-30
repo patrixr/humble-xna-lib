@@ -86,6 +86,18 @@ namespace Humble.Animations
             _hasBeenValidated = false;
         }
 
+        public SpriteSheet(SpriteSheet ss)
+        {
+            _bliteArea = new Rectangle();
+            _hasBeenValidated = false;
+            texturename = ss.texturename;
+            states = new List<AnimationState>();
+            foreach (AnimationState st in ss.states)
+            {
+                states.Add(st);
+            }
+        }
+
         public void Update(GameTime gameTime)
         {
             Update(gameTime.ElapsedGameTime.Milliseconds);

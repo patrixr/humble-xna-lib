@@ -35,6 +35,9 @@ namespace Humble.Collisions
         {
             Vector2 pos = _getPosition(a);
 
+            if (pos.X > _width)
+                return -1;
+
             return (int)(pos.X / (float)_divisionSize);
         }
 
@@ -44,6 +47,10 @@ namespace Humble.Collisions
                 return;
 
             int div = GetDivision(a);
+
+            // TODO : out of bounds elements should be added 
+            if (div < 0 || div >= _divisions)
+                return;
 
             if (_grid[div] == null)
                 _grid[div] = new List<T>();
@@ -55,7 +62,7 @@ namespace Humble.Collisions
         public bool Remove(T a)
         {
             int div = GetDivision(a);
-            if (_grid[div] != null && _grid[div].Remove(a))
+            if (div > 0 && div < _divisions && _grid[div] != null && _grid[div].Remove(a))
             {
                 _all.Remove(a);
                 return true;
@@ -100,7 +107,7 @@ namespace Humble.Collisions
                 {
                     T a = _grid[i][j];
                     int div = GetDivision(a);
-                    if (div != i && div >= 0)
+                    if (div != i && div >= 0 && div < _divisions)
                     {
                         _grid[i].Remove(a);
                         if (_grid[div] == null)
