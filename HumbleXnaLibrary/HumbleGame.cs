@@ -53,6 +53,10 @@ namespace Humble
             messageHandler = MessageHandler.Singleton;
             messageHandler.CreateMessage(HumbleMessages.MSG_BUILTIN_QUIT, true);
             messageHandler.RegisterListener(this, HumbleMessages.MSG_BUILTIN_QUIT);
+            messageHandler.CreateMessage(HumbleMessages.MSG_BUILTIN_PUSH_SCREEN, true);
+            messageHandler.RegisterListener(this, HumbleMessages.MSG_BUILTIN_PUSH_SCREEN);
+            messageHandler.CreateMessage(HumbleMessages.MSG_BUILTIN_POP_SCREEN, true);
+            messageHandler.RegisterListener(this, HumbleMessages.MSG_BUILTIN_POP_SCREEN);
 
             base.Initialize();
         }
@@ -91,8 +95,13 @@ namespace Humble
         {
             if (msg == HumbleMessages.MSG_BUILTIN_QUIT)
             {
+                screenManager.Clear();
                 this.Exit();
             }
+            else if (msg == HumbleMessages.MSG_BUILTIN_POP_SCREEN)
+                screenManager.popScreen();
+            else if (msg == HumbleMessages.MSG_BUILTIN_PUSH_SCREEN && param1 != null)
+                screenManager.pushScreen((Screen)param1);
         }
     }
 }

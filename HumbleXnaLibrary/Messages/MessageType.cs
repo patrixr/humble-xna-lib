@@ -22,6 +22,11 @@ namespace Humble.Messages
             return true;
         }
 
+        public bool RemoveListener(IMessageObject l)
+        {
+            return Listeners.Remove(l);
+        }
+
         public String Id;
         public Boolean UniqueListener;
         public List<IMessageObject> Listeners;

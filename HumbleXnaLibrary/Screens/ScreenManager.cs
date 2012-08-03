@@ -34,6 +34,12 @@ namespace Humble.Screens
             }
         }
 
+        public int Count
+        {
+            get { return Screens.Count; }
+            set { }
+        }
+
         #region SINGLETON
 
         private static ScreenManager singleton = null;
@@ -160,6 +166,18 @@ namespace Humble.Screens
         {
             ToPop++;
             Events.Enqueue(new ScreenManagerEvent(ScreenManagerEvent.Type.POP));
+        }
+
+        /// <summary>
+        /// Empty the screen stack
+        /// </summary>
+        public void Clear()
+        {
+            while (Screens.Count > 0)
+            {
+                Screens.Peek().UnloadContent();
+                Screens.Pop();
+            }
         }
 
     }

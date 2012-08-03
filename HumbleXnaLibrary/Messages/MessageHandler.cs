@@ -153,6 +153,21 @@ namespace Humble.Messages
         }
 
         /// <summary>
+        /// Removes a listener for a particular message
+        /// </summary>
+        /// <param name="listener">the listener object</param>
+        /// <param name="msg">Message to register to</param>
+        /// <returns></returns>
+        public bool RmoveListener(IMessageObject listener, String msg)
+        {
+            if (!_messageTypes.ContainsKey(msg))
+            {
+                return false;
+            }
+            return _messageTypes[msg].RemoveListener(listener);
+        }
+
+        /// <summary>
         /// Adds a message to the pending messages queue.
         /// </summary>
         /// <param name="msg">Message to post</param>
