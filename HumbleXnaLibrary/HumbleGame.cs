@@ -84,8 +84,6 @@ namespace Humble
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
-
             screenManager.Draw();
 
             base.Draw(gameTime);
